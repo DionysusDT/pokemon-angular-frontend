@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div class="mb-6">
+  <swiper-container slides-per-view="1" loop="true" navigation="true" pagination="true" autoplay-delay="3500"
+    autoplay-disable-on-interaction="false" class="block overflow-hidden h-[500px]">
+    <swiper-slide *ngFor="let url of slides; let i = index">
+      <a [href]="url" target="_blank" rel="noopener" class="block w-full h-full">
+      <img [src]="thumb(url)" class="object-cover w-full h-full" alt="trailer">
+    </a>
+    </swiper-slide>
+  </swiper-container>
+</div>
+
+<div class="px-4 mb-4">
+  <h2 class="mb-3 text-lg font-semibold">Top Pokémons</h2>
+  <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+    <app-pokemon-card *ngFor="let p of top" [pokemon]="p"></app-pokemon-card>
+  </div>
+</div>

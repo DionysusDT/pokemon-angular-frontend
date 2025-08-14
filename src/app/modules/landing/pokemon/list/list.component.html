@@ -1,1 +1,53 @@
-<p>list works!</p>
+<div class="flex items-center justify-between px-4 mt-4 mb-4">
+  <h1 class="text-xl font-semibold">Pokemon List</h1>
+
+  <label class="inline-flex items-center gap-2 cursor-pointer">
+    <span class="px-3 py-2 text-white rounded bg-[#0f172a]">Import CSV</span>
+    <input type="file" accept=".csv" class="hidden" />
+  </label>
+</div>
+
+<div class="grid justify-end w-full grid-cols-1 gap-3 px-4 mb-4 lg:grid-cols-6">
+  <div></div>
+  <mat-form-field>
+    <mat-label>Search name...</mat-label>
+    <input matInput  [formControl]="form.controls.search">
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Type</mat-label>
+    <mat-select [formControl]="form.controls.type">
+      <mat-option [value]="''">All</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Legendary</mat-label>
+    <mat-select [formControl]="form.controls.legendary">
+      <mat-option [value]="''">Any</mat-option>
+      <mat-option [value]="'true'">Yes</mat-option>
+      <mat-option [value]="'false'">No</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Speed</mat-label>
+    <mat-select [formControl]="form.controls.speedRange">
+      <mat-option [value]="''">Any</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="flex items-start justify-start">
+    <button class="w-full h-[57px] px-3 py-2 border rounded" (click)="reset()">Reset</button>
+  </div>
+</div>
+
+<div class="grid grid-cols-2 gap-4 px-4 md:grid-cols-5">
+  <app-pokemon-card *ngFor="let p of pageData()" [pokemon]="p" />
+</div>
+
+<div class="px-4 mt-4">
+  <mat-paginator [length]="total()" [pageIndex]="page-1" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    (page)="onPage($event)">
+  </mat-paginator>
+</div>

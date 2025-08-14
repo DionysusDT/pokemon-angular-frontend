@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
     path: '',
     component: LayoutComponent,
@@ -16,9 +17,13 @@ export const routes: Routes = [
   {
         path: '',
         component: LayoutComponent,
+        data: {
+          layout: 'main'
+        },
         children: [
           { path: 'home', loadChildren: () => import('./modules/landing/home/home.routes') },
           { path: 'pokemon', loadChildren: () => import('./modules/landing/pokemon/pokemon.routes') }
         ]
-    }
+  },
+  { path: '**', redirectTo: 'home' },
 ];

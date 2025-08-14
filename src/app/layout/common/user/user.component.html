@@ -1,0 +1,12 @@
+<button mat-icon-button [matMenuTriggerFor]="userActions">
+  <span class="relative">
+    <mat-icon class="text-white" fontIcon="account_circle"></mat-icon>
+  </span>
+</button>
+
+<mat-menu #userActions="matMenu" xPosition="before">
+  <button mat-menu-item (click)="logOut()">
+    <mat-icon fontIcon="logout"></mat-icon>
+    <span>Log out</span>
+  </button>
+</mat-menu>

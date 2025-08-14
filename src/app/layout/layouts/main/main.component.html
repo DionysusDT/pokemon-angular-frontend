@@ -1,40 +1,33 @@
 <div class="flex flex-col flex-auto w-full min-w-0">
-    <div
-        class="relative flex w-full h-20 px-4 py-4 shadow bg-card z-49 flex-0 bg-[#0f172a]">
-        <div class="flex items-center mx-2 lg:mr-8">
-          <div class="hidden lg:flex">
-            <img class="rounded-full w-14 dark:hidden" src="https://i.pinimg.com/736x/d7/01/28/d70128f665c0687a491a0bef962b4e72.jpg" />
-          </div>
-        </div>
-        <div class="ml-auto flex items-center space-x-0.5 pl-2 sm:space-x-2">
-          <app-search></app-search>
-          <app-user></app-user>
-        </div>
+  <div class="relative flex w-full h-20 px-4 py-4 shadow bg-card z-49 flex-0 bg-[#0f172a]">
+    <div class="flex items-center mx-2 lg:mr-8">
+      <div class="hidden lg:flex">
+        <img class="rounded-full w-14 dark:hidden"
+          src="https://i.pinimg.com/736x/d7/01/28/d70128f665c0687a491a0bef962b4e72.jpg" />
+      </div>
     </div>
-    <nav class="flex items-center gap-4 px-4 py-2 bg-white shadow-sm dark:bg-neutral-900">
-          <a
-            routerLink="/"
-            routerLinkActive="font-bold underline"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
-          >
-            Home
-          </a>
-          <a
-            routerLink="/pokemon"
-            routerLinkActive="font-bold underline"
-            class="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
-          >
-            Pokemon
-          </a>
-        </nav>
-    <div class="flex flex-col flex-auto w-full">
-        <router-outlet></router-outlet>
+    <div class="ml-auto flex items-center space-x-0.5 pl-2 sm:space-x-2">
+      <app-search></app-search>
+      <app-user></app-user>
     </div>
-    <div
-        class="relative flex items-center w-full px-4 border-t bg-card z-49 h-14 flex-0 sm:h-20 md:px-6">
-        <span class="font-medium text-secondary"
-            >Pokemon &copy; Dio</span
-        >
+  </div>
+  <nav class="px-4 py-2 border-y bg-white/90 border-neutral-200">
+    <div class="flex items-center gap-2">
+      <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="font-semibold text-neutral-900 bg-neutral-300 border"
+      class="px-3 py-1.5 rounded-lg border border-transparent text-neutral-700 hover:text-neutral-900">
+        Home
+      </a>
+      <a routerLink="/pokemon" [routerLinkActive]="'font-semibold text-neutral-900 bg-neutral-300 border'"
+      class="px-3 py-1.5 rounded-lg border border-transparent text-neutral-700 hover:text-neutral-900">
+        Pokemon
+      </a>
     </div>
+  </nav>
+
+  <div class="flex flex-col flex-auto w-full">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="relative flex items-center w-full px-4 border-t bg-card z-49 h-14 flex-0 sm:h-20 md:px-6">
+    <span class="font-medium text-secondary">Pokemon &copy; Dio</span>
+  </div>
 </div>

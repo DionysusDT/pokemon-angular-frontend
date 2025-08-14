@@ -6,6 +6,7 @@ import { SearchComponent } from '../../common/search/search.component';
 
 @Component({
   selector: 'app-main',
+  standalone: true,
   imports: [
     RouterOutlet,
     RouterLink, RouterLinkActive,

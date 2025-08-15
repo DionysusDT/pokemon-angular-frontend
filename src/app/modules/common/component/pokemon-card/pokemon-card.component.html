@@ -2,5 +2,5 @@
   <div class="w-full overflow-hidden rounded aspect-square bg-neutral-100">
     <img *ngIf="pokemon?.image" [src]="pokemon!.image" alt="" class="object-cover w-full h-full" />
   </div>
-  <div class="mt-2 font-medium text-center truncate">{{ pokemon?.name }}</div>
+  <div class="mt-2 font-medium text-center truncate" *ngIf="pokemon?.name">{{ pokemon.name }}</div>
 </div>

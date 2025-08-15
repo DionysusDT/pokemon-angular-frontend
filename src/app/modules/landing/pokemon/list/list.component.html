@@ -43,7 +43,7 @@
 </div>
 
 <div class="grid grid-cols-2 gap-4 px-4 md:grid-cols-5">
-  <app-pokemon-card *ngFor="let p of pageData()" [pokemon]="p" />
+  <app-pokemon-card *ngFor="let p of pageData()" [pokemon]="p" (click)="openDetail(p)" />
 </div>
 
 <div class="px-4 mt-4">

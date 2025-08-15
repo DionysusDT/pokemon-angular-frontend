@@ -1,0 +1,78 @@
+<div class="flex flex-col max-w-280 md:min-w-160 max-h-[900px] p-4">
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="text-lg font-semibold">{{ data.pokemon.name }}</h2>
+    <div class="flex items-center gap-2">
+      <button mat-icon-button (click)="toggle()" aria-label="Toggle favorite">
+        <mat-icon>{{ favorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="close()" aria-label="Close">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div class="grid w-full p-3 rounded aspect-square bg-neutral-50 place-items-center">
+      <img [src]="data.pokemon.image" [alt]="data.pokemon.name" class="block object-contain max-w-full max-h-full"
+        width="280" height="280" loading="lazy" decoding="async" />
+    </div>
+
+    <div class="space-y-2">
+      <div>
+        <span class="font-medium">Type:</span>
+        {{ data.pokemon.type1 }} <ng-container *ngIf="data.pokemon.type2"> / {{data.pokemon.type2 }}</ng-container>
+      </div>
+      <div *ngIf="data.pokemon.legendary !== undefined">
+        <span class="font-medium">Legendary:</span>
+        {{ data.pokemon.legendary ? 'Yes' : 'No' }}
+      </div>
+      <div *ngIf="data.pokemon.generation">
+        <span class="font-medium">Generation:</span>
+        {{ data.pokemon.generation }}
+      </div>
+
+      <div class="grid grid-cols-2 text-sm gap-x-4 gap-y-1">
+        <div *ngIf="data.pokemon.total !== undefined">
+          <span class="font-medium">Total:</span>
+          {{ data.pokemon.total }}
+        </div>
+        <div *ngIf="data.pokemon.hp !== undefined">
+          <span class="font-medium">HP:</span>
+          {{ data.pokemon.hp }}
+        </div>
+        <div *ngIf="data.pokemon.attack !== undefined">
+          <span class="font-medium">Attack:</span>
+          {{ data.pokemon.attack}}
+        </div>
+        <div *ngIf="data.pokemon.defense !== undefined">
+          <span class="font-medium">Defense:</span>
+          {{data.pokemon.defense }}
+        </div>
+        <div *ngIf="data.pokemon.spAttack !== undefined">
+          <span class="font-medium">Sp. Atk:</span>
+          {{data.pokemon.spAttack }}
+        </div>
+        <div *ngIf="data.pokemon.spDefense !== undefined">
+          <span class="font-medium">Sp. Def:</span>
+          {{data.pokemon.spDefense }}
+        </div>
+        <div *ngIf="data.pokemon.speed !== undefined">
+          <span class="font-medium">Speed:</span>
+          {{ data.pokemon.speed }}
+        </div>
+      </div>
+
+      <div *ngIf="data.pokemon.ytbUrl" class="pt-2">
+        <a class="inline-flex items-center gap-2 px-3 py-2 border rounded hover:bg-neutral-50"
+          [href]="data.pokemon.ytbUrl" target="_blank" rel="noopener">
+          <mat-icon>play_arrow</mat-icon>
+          Trailer
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end gap-2 mt-4">
+    <button mat-stroked-button (click)="close()">Close</button>
+  </div>
+</div>

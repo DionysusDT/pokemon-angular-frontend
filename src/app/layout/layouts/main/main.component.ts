@@ -10,8 +10,7 @@ import { SearchComponent } from '../../common/search/search.component';
   imports: [
     RouterOutlet,
     RouterLink, RouterLinkActive,
-    UserComponent,
-    SearchComponent
+    UserComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'

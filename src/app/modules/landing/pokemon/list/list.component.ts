@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { PokemonCardComponent } from '../../../common/component/pokemon-card/pokemon-card.component';
 import { Pokemon } from '../pokemon.types';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { PokemonComposeComponent } from '../../../common/component/pokemon-compose/pokemon-compose.component';
 
 @Component({
   selector: 'app-list',
@@ -17,6 +19,7 @@ import { Pokemon } from '../pokemon.types';
     MatFormFieldModule, MatSelectModule, MatInputModule,
     MatPaginatorModule,
     PokemonCardComponent,
+    MatDialogModule
   ],
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
@@ -39,6 +42,7 @@ export class ListComponent implements OnInit {
   ];
 
   private fb = inject(FormBuilder);
+  private dialog = inject(MatDialog);
 
   types: string[] = [];
 
@@ -88,5 +92,13 @@ export class ListComponent implements OnInit {
 
   private applyFilters() {
 
+  }
+
+  openDetail(p: Pokemon){
+    this.dialog.open(PokemonComposeComponent, {
+      data: {
+        pokemon: p
+      }
+    });
   }
 }

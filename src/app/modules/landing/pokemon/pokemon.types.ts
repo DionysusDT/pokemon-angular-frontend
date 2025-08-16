@@ -15,3 +15,20 @@ export type Pokemon = {
   legendary?: boolean;
   ytbUrl?: string;
 };
+
+export interface PokemonListResponse {
+  items: Pokemon[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface PokemonQuery {
+  limit?: number
+  page?: number;
+  name?: string;
+  type?: string;
+  legendary?: boolean;
+  speedMin?: number;
+  speedMax?: number;
+}

@@ -48,11 +48,42 @@
         <mat-form-field class="w-full">
           <mat-label>Password</mat-label>
           <input id="password" matInput type="password" [formControlName]="'password'" #passwordField />
+          <button mat-icon-button type="button" (click)="
+                            passwordField.type === 'password'
+                                ? (passwordField.type = 'text')
+                                : (passwordField.type = 'password')
+                        " matSuffix>
+            @if (passwordField.type === 'password') {
+            <mat-icon fontIcon="visibility"></mat-icon>
+            }
+            @if (passwordField.type === 'text') {
+            <mat-icon fontIcon="visibility_off"></mat-icon>
+            }
+          </button>
           <mat-error> Password is required </mat-error>
         </mat-form-field>
 
+
+        <mat-form-field class="w-full">
+          <mat-label>Confirm Password</mat-label>
+          <input id="passwordConfirm" matInput type="password" [formControlName]="'passwordConfirm'"
+            #passwordConfirmField>
+          <button mat-icon-button type="button"
+            (click)="passwordConfirmField.type === 'password' ? passwordConfirmField.type = 'text' : passwordConfirmField.type = 'password'"
+            matSuffix>
+            @if (passwordField.type === 'password') {
+            <mat-icon fontIcon="visibility"></mat-icon>
+            }
+            @if (passwordField.type === 'text') {
+            <mat-icon fontIcon="visibility_off"></mat-icon>
+            }
+          </button>
+          <mat-error> Confirm password is required </mat-error>
+        </mat-form-field>
+
+
         <div class="mt-1.5 inline-flex w-full items-end">
-          <mat-checkbox class="-ml-2" [formControlName]="'agreements'">
+          <mat-checkbox class="-ml-2" [formControlName]="'agreements'" [color]="'primary'">
             <span>I agree with</span>
             <a class="ml-1 text-black-500 hover:underline" [routerLink]="['./']">Terms
             </a>
@@ -65,7 +96,7 @@
         <button class="w-full mt-6 fuse-mat-button-large" mat-flat-button [color]="'primary'"
           [disabled]="(loading$ | async) || signUpForm.invalid" (click)="signUp()">
           @if (!(loading$ | async)) {
-          <span>Create your free account</span>
+          <span>Create your account</span>
           }
           @if (loading$ | async) {
           <mat-progress-spinner [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>

@@ -20,6 +20,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { selectError, selectLoading } from '../../../store/auth/selectors';
 import { AuthActions } from '../../../store/auth/action';
 
+
 @Component({
   selector: 'app-sign-up',
   imports: [
@@ -43,22 +44,25 @@ export class SignUpComponent implements OnInit, OnDestroy {
   showSuccessAlert = false;
   loading$!: ReturnType<Store['select']>;
   error$!: ReturnType<Store['select']>;
-  
+
   private destroy$ = new Subject<void>();
 
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private store: Store,
     private actions$: Actions
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.signUpForm = this._formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      passwordConfirm: ['', Validators.required],
       agreements: ['', Validators.requiredTrue],
-    });
+    },
+      { validators: this.passwordMatchValidator }
+    );
 
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
@@ -89,12 +93,18 @@ export class SignUpComponent implements OnInit, OnDestroy {
       this.signUpForm.markAllAsTouched();
       return;
     }
-    
+
     this.showSuccessAlert = false;
 
     const { name, email, password } = this.signUpForm.value;
-    this.store.dispatch(AuthActions.signupRequested({ 
-      dto: { full_name: name, email, password } 
+    this.store.dispatch(AuthActions.signupRequested({
+      dto: { full_name: name, email, password }
     }));
+  }
+
+  passwordMatchValidator(group: UntypedFormGroup) {
+    const password = group.get('password')?.value;
+    const confirm = group.get('passwordConfirm')?.value;
+    return password === confirm ? null : { passwordMismatch: true };
   }
 }

@@ -9,8 +9,11 @@
 
 <div class="grid justify-end w-full grid-cols-1 gap-3 px-4 mb-4 lg:grid-cols-6">
   <div></div>
+  <div class="flex items-start justify-end">
+    <button class="px-3 py-2 border rounded mt-[24px] w-[120px]" (click)="reset()">Reset</button>
+  </div>
   <mat-form-field>
-    <mat-label>Search name...</mat-label>
+    <mat-label>Search name</mat-label>
     <input matInput  [formControl]="form.controls.search">
   </mat-form-field>
 
@@ -36,10 +39,6 @@
       <mat-option [value]="''">Any</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <div class="flex items-start justify-start">
-    <button class="w-full h-[57px] px-3 py-2 border rounded" (click)="reset()">Reset</button>
-  </div>
 </div>
 
 <div class="grid grid-cols-2 gap-4 px-4 md:grid-cols-5">

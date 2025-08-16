@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+// src/app/modules/auth/sign-in/sign-in.component.ts
+import { Component, OnInit } from '@angular/core';
 import {
-  FormsModule,
-  ReactiveFormsModule,
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
+  FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,38 +10,41 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { selectError, selectLoading } from '../../../store/auth/selectors';
+import { AuthActions } from '../../../store/auth/action';
 
 @Component({
   selector: 'app-sign-in',
+  standalone: true,
   imports: [
-    RouterLink,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
+    RouterLink, FormsModule, ReactiveFormsModule,
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule,
+    MatCheckboxModule, MatProgressSpinnerModule, AsyncPipe, NgIf,
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   signInForm!: UntypedFormGroup;
-  showAlert: boolean = false;
+  loading$!: ReturnType<Store['select']>;
+  error$!: ReturnType<Store['select']>;
 
-  constructor(
-    private _formBuilder: UntypedFormBuilder
-  ) { }
+  constructor(private fb: UntypedFormBuilder, private store: Store) {}
 
   ngOnInit(): void {
-    this.signInForm = this._formBuilder.group({
+    this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      rememberMe: [''],
     });
+    this.loading$ = this.store.select(selectLoading);
+    this.error$ = this.store.select(selectError);
   }
-  
-  signIn(): void { }
+
+  signIn(): void {
+    if (this.signInForm.invalid) return;
+    const { email, password } = this.signInForm.value;
+    this.store.dispatch(AuthActions.loginRequested({ dto: { email, password } }));
+  }
 }

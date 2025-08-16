@@ -7,15 +7,24 @@ import { layoutReducer } from './store/layout/reducer';
 import { LayoutEffects } from './store/layout/efffects';
 import { provideEffects } from '@ngrx/effects';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { environment } from '../environment/enviroment';
+import { API_BASE_URL } from './core/config/config';
+import { authReducer } from './store/auth/reducer';
+import { AuthEffects } from './store/auth/effects';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authTokenInterceptor } from './core/auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideStore({
       layout: layoutReducer,
+      auth: authReducer
     }),
     provideAnimationsAsync(),
-    provideEffects([LayoutEffects]),
+    provideEffects([LayoutEffects, AuthEffects]),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)
+    provideRouter(routes),
+    { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
+    provideHttpClient(withInterceptors([authTokenInterceptor])),
   ]
 };

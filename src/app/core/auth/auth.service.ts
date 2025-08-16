@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { API_BASE_URL } from '../config/config';
-import { LoginDto, LoginApiResponse, SignupDto } from './auth.types';
+import { LoginDto, LoginApiResponse, SignupDto, ProfileApiResponse } from './auth.types';
 import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -21,6 +21,12 @@ export class AuthApiService {
 
   logout() {
     return this.http.post(`${this.apiBase}/auth/logout`, {});
+  }
+
+  getProfile() {
+    return this.http
+      .get<ProfileApiResponse>(`${this.apiBase}/auth/profile`)
+      .pipe(map(res => res.data));
   }
 
   check(): Observable<boolean> {

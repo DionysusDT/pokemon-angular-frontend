@@ -79,4 +79,25 @@ export class AuthEffects {
       ),
     { dispatch: false },
   );
+
+  restore$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.restoreSession),
+      mergeMap(() => {
+        const token = localStorage.getItem('token');
+        if (!token) return of(AuthActions.restoreFailed());
+        return this.api.getProfile().pipe(
+          map((d) =>
+            AuthActions.restoreSucceeded({
+              user: { id: d.id, email: d.email, full_name: d.full_name, role: d.role },
+            }),
+          ),
+          catchError(() => {
+            localStorage.removeItem('token');
+            return of(AuthActions.restoreFailed());
+          }),
+        );
+      }),
+    ),
+  );
 }

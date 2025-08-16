@@ -2,6 +2,10 @@ export type AuthUser = {
   id: number;
   email: string;
   full_name: string;
+  role?: string,
+  is_active?: boolean;
+  created_at?: string;
+  updated_at?: string;
 };
 
 export type LoginDto = {
@@ -26,3 +30,17 @@ export type LoginApiResponse = {
     full_name: string;
   };
 };
+
+export type ProfileApiResponse = {
+  success: true;
+  data: {
+    id: number;
+    email: string;
+    full_name: string;
+    role: string;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  };
+};
+

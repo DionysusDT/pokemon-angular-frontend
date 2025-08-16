@@ -14,6 +14,10 @@ export const AuthActions = createActionGroup({
 
     'Signup Requested': props<{ dto: SignupDto }>(),
     'Signup Succeeded': emptyProps(),
-    'Signup Failed': props<{ error: string }>()
+    'Signup Failed': props<{ error: string }>(),
+
+    'Restore Session': emptyProps(),
+    'Restore Succeeded': props<{ user: AuthUser }>(),
+    'Restore Failed': emptyProps(),
   },
 });

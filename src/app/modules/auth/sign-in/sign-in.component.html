@@ -14,6 +14,12 @@
         </a>
       </div>
 
+      @if (error$ | async; as error) {
+      <div class="flex items-center w-full px-4 py-3 mt-6 text-red-700 bg-red-100 border border-red-300 rounded">
+        <span class="text-sm">{{ error }}</span>
+      </div>
+      }
+
       <form class="mt-8" [formGroup]="signInForm" #signInNgForm="ngForm">
         <mat-form-field class="w-full">
           <mat-label>Email address</mat-label>
@@ -27,11 +33,11 @@
         </mat-form-field>
 
         <button class="w-full mt-6 fuse-mat-button-large" mat-flat-button [color]="'primary'"
-          [disabled]="signInForm.disabled" (click)="signIn()">
-          @if (!signInForm.disabled) {
-          <span> Sign in </span>
+          [disabled]="(loading$ | async) || signInForm.invalid" (click)="signIn()">
+          @if (!(loading$ | async)) {
+          <span>Sign in</span>
           }
-          @if (signInForm.disabled) {
+          @if (loading$ | async) {
           <mat-progress-spinner [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
           }
         </button>

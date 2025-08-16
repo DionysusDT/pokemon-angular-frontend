@@ -30,6 +30,20 @@ export class AuthEffects {
     ),
   );
 
+   signup$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.signupRequested),
+      mergeMap(({ dto }) =>
+        this.api.signup(dto).pipe(
+          map(() => AuthActions.signupSucceeded()),
+          catchError(err =>
+            of(AuthActions.signupFailed({ error: err?.error?.message ?? 'Registration failed' })),
+          ),
+        ),
+      ),
+    ),
+  );
+
   loginPersistAndNav$ = createEffect(
     () =>
       this.actions$.pipe(

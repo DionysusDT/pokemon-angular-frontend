@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { API_BASE_URL } from '../config/config';
 import { LoginDto, LoginApiResponse, SignupDto } from './auth.types';
+import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
@@ -20,5 +21,15 @@ export class AuthApiService {
 
   logout() {
     return this.http.post(`${this.apiBase}/auth/logout`, {});
+  }
+
+  check(): Observable<boolean> {
+    try {
+      const raw = localStorage.getItem('token');
+      if (!raw) return of(false);
+      return of(true);
+    } catch {
+      return of(false);
+    }
   }
 }

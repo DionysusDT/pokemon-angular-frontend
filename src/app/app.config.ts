@@ -15,16 +15,19 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authTokenInterceptor } from './core/auth/auth.interceptor';
 import { PokemonEffects } from './store/pokemon/effects';
 import { pokemonReducer } from './store/pokemon/reducer';
+import { SettingEffects } from './store/setting/effects';
+import { settingReducer } from './store/setting/reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideStore({
       layout: layoutReducer,
       auth: authReducer,
-      pokemon: pokemonReducer
+      pokemon: pokemonReducer,
+      setting: settingReducer
     }),
     provideAnimationsAsync(),
-    provideEffects([LayoutEffects, AuthEffects, PokemonEffects]),
+    provideEffects([LayoutEffects, AuthEffects, PokemonEffects, SettingEffects]),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     { provide: API_BASE_URL, useValue: environment.apiBaseUrl },

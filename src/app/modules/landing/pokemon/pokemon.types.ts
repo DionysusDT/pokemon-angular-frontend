@@ -26,7 +26,7 @@ export interface PokemonListResponse {
 export interface PokemonQuery {
   limit?: number
   page?: number;
-  name?: string;
+  search?: string;
   type?: string;
   legendary?: boolean;
   speedMin?: number;

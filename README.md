@@ -17,6 +17,19 @@ To start a local development server, run:
 npm install
 ```
 
+## API Configuration
+
+The frontend expects the backend API to run on port `3000` by default.  
+If your backend is using a different port, update the API base URL in:
+
+`src/environments/environment.ts`
+
+```ts
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:3000'  // Change if backend runs on another port
+};
+```
 ## Run the development server
 
 ```bash

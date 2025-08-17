@@ -17,6 +17,8 @@ import { PokemonEffects } from './store/pokemon/effects';
 import { pokemonReducer } from './store/pokemon/reducer';
 import { SettingEffects } from './store/setting/effects';
 import { settingReducer } from './store/setting/reducer';
+import { FavoriteEffects } from './store/favorite/effects';
+import { favoriteReducer } from './store/favorite/reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,10 +26,11 @@ export const appConfig: ApplicationConfig = {
       layout: layoutReducer,
       auth: authReducer,
       pokemon: pokemonReducer,
-      setting: settingReducer
+      setting: settingReducer,
+      favorite: favoriteReducer
     }),
     provideAnimationsAsync(),
-    provideEffects([LayoutEffects, AuthEffects, PokemonEffects, SettingEffects]),
+    provideEffects([LayoutEffects, AuthEffects, PokemonEffects, SettingEffects, FavoriteEffects]),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     { provide: API_BASE_URL, useValue: environment.apiBaseUrl },

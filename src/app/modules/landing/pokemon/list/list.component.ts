@@ -115,7 +115,10 @@ export class ListComponent implements OnInit {
   }
 
   openDetail(p: Pokemon) {
-    this.dialog.open(PokemonComposeComponent, { data: { pokemon: p } });
+    this.dialog.open(PokemonComposeComponent, {
+      autoFocus: false,
+      data: { pokemon: p }
+    });
   }
 
   async onImportCsv(ev: Event) {

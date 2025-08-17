@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { PokemonCardComponent } from '../../common/component/pokemon-card/pokemon-card.component';
 import { register } from 'swiper/element/bundle';
 import { Store } from '@ngrx/store';
 import { AsyncPipe, NgIf, NgFor } from '@angular/common';
 import { PokemonActions } from '../../../store/pokemon/action';
 import { selectHomeSlides, selectHomeTop10 } from '../../../store/pokemon/selectors';
+import { Pokemon } from '../pokemon/pokemon.types';
+import { PokemonComposeComponent } from '../../common/component/pokemon-compose/pokemon-compose.component';
+import { MatDialog } from '@angular/material/dialog';
 
 register();
 
@@ -18,13 +21,12 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeComponent implements OnInit {
-  slides$;
-  top$;
 
-  constructor(private store: Store) {
-    this.slides$ = this.store.select(selectHomeSlides);
-    this.top$ = this.store.select(selectHomeTop10);
-  }
+  private store = inject(Store);
+  private dialog = inject(MatDialog);
+
+  slides$ = this.store.select(selectHomeSlides);
+  top$ = this.store.select(selectHomeTop10);
 
   ngOnInit(): void {
     this.store.dispatch(PokemonActions.loadHomeTop10Requested());
@@ -44,4 +46,11 @@ export class HomeComponent implements OnInit {
       ? `https://img.youtube.com/vi/${id}/hqdefault.jpg`
       : 'assets/placeholder-16x9.jpg';
   }
+
+  openDetail(p: Pokemon) {
+      this.dialog.open(PokemonComposeComponent, {
+        autoFocus: false,
+        data: { pokemon: p }
+      });
+    }
 }

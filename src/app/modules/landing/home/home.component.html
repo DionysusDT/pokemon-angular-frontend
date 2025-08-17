@@ -19,6 +19,6 @@
 <div class="px-4 mb-4">
   <h2 class="mb-3 text-lg font-semibold">Top Pokemons</h2>
   <div class="grid grid-cols-2 gap-4 md:grid-cols-5" *ngIf="top$ | async as top">
-    <app-pokemon-card *ngFor="let p of top" [pokemon]="p"></app-pokemon-card>
+    <app-pokemon-card *ngFor="let p of top" [pokemon]="p" (click)="openDetail(p)"></app-pokemon-card>
   </div>
 </div>

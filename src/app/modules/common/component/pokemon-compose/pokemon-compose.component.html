@@ -2,8 +2,15 @@
   <div class="flex items-center justify-between mb-3">
     <h2 class="text-lg font-semibold">{{ data.pokemon.name }}</h2>
     <div class="flex items-center gap-2">
-      <button mat-icon-button (click)="toggle()" aria-label="Toggle favorite">
-        <mat-icon>{{ favorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+      <button mat-icon-button (click)="toggle()" [disabled]="(loading$ | async)!" aria-label="Toggle favorite">
+        <ng-container *ngIf="(loading$ | async); else heartTpl">
+            <mat-icon>autorenew</mat-icon>
+          </ng-container>
+          <ng-template #heartTpl>
+            <mat-icon>
+              {{ (favorite$ | async) ? 'favorite' : 'favorite_border' }}
+            </mat-icon>
+          </ng-template>
       </button>
       <button mat-icon-button (click)="close()" aria-label="Close">
         <mat-icon>close</mat-icon>

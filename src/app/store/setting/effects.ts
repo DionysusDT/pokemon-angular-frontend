@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { SettingsApi } from '../../modules/common/service/settings/setting';
+import { SettingsApi } from '../../modules/common/service/settings/setting.service';
 import { SettingActions } from './action';
 
 @Injectable()

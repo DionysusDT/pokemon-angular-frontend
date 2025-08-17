@@ -25,16 +25,15 @@ ng serve
 
 Open your browser at: http://localhost:4200
 
-
 ## Implemented Features
 - User Authentication: Signup/Login with JWT (email & password).
 - Responsive Layout
 - Home Page with Carousel and Grid of 10 Pokemon
 - List Page
- + Import Pokemon via CSV.
- + Search bar with debounce (300ms) 
- + Advanced filters (type, legendary, speed) 
- + Pagination (10/20/50/100 per page) + query params filter. Ex: ?type=Water&page=1&pageSize=20&legendary=false&speedRange=101-150
+  + Import Pokemon via CSV.
+  + Search bar with debounce (300ms) 
+  + Advanced filters (type, legendary, speed)
+  + Pagination (10/20/50/100 per page) + query params filter. Ex: ?type=Water&page=1&pageSize=20&legendary=false&speedRange=101-150
 - Pokemon Detail Modal: View details + mark/unmark favorites with heart icon.
 
 ## Routing 

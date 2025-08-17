@@ -47,6 +47,9 @@ Open your browser at: http://localhost:4200
   + Search bar with debounce (300ms) 
   + Advanced filters (type, legendary, speed)
   + Pagination (10/20/50/100 per page) + query params filter. Ex: ?type=Water&page=1&pageSize=20&legendary=false&speedRange=101-150
+  
+    **Note (Frontend)**: To provide user-specific filter data dynamically, you must use the API  
+  `POST /settings/pokemon` (see Backend section) to save user Pokemon settings before querying.
 - Pokemon Detail Modal: View details + mark/unmark favorites with heart icon.
 
 ## Routing 

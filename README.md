@@ -43,5 +43,6 @@ Open your browser at: http://localhost:4200
 - /home – Home page with carousel + Pokemon grid
 - /pokemon – Pokemon list page with search, filter, pagination- 
 - /404-not-found 404 Not Found page.
+
 ** If not logged in → always redirect to /sign-in.
 ** If logged in but access an invalid route → show the 404 Not Found page.

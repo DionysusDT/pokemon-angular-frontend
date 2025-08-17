@@ -33,8 +33,7 @@ import { AuthActions } from '../../../store/auth/action';
     MatIconModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    AsyncPipe,
-    NgIf,
+    AsyncPipe
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'

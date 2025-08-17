@@ -30,8 +30,7 @@ import { AuthActions } from '../../../store/auth/action';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    AsyncPipe,
-    NgIf,
+    AsyncPipe
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'

@@ -38,10 +38,10 @@ Open your browser at: http://localhost:4200
 - Pokemon Detail Modal: View details + mark/unmark favorites with heart icon.
 
 ## Routing 
-/sign-in – User login
-/sign-up – User registration
-/home – Home page with carousel + Pokemon grid
-/pokemon – Pokemon list page with search, filter, pagination
-/404-not-found 404 Not Found page.
+- /sign-in – User login
+- /sign-up – User registration
+- /home – Home page with carousel + Pokemon grid
+- /pokemon – Pokemon list page with search, filter, pagination- 
+- /404-not-found 404 Not Found page.
 ** If not logged in → always redirect to /sign-in.
 ** If logged in but access an invalid route → show the 404 Not Found page.
